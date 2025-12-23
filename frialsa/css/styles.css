@@ -1,0 +1,94 @@
+/* css/styles.css - VERSIÓN MEJORADA (ALTO CONTRASTE) */
+:root {
+    --bg-dark: #0f172a;       /* Fondo principal */
+    --card-bg: #1e293b;       /* Fondo de tarjetas */
+    --text-primary: #ffffff;  /* Blanco puro para títulos */
+    --text-secondary: #e2e8f0; /* Gris muy claro (casi blanco) para subtítulos */
+    --input-bg: #334155;      /* Fondo de inputs más claro que la tarjeta */
+    --accent: #38bdf8;        /* Azul celeste brillante para acentos */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Forzar que las tarjetas tengan texto claro */
+.card-custom {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    color: var(--text-primary);
+}
+
+/* CORRECCIÓN PRINCIPAL: Etiquetas de formulario */
+label.form-label {
+    color: #ffffff !important; /* Blanco puro forzado */
+    font-weight: 600;          /* Un poco más gordita la letra */
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+/* Inputs más legibles */
+.form-control, .form-select {
+    background-color: var(--input-bg) !important;
+    border: 1px solid #475569 !important;
+    color: #fff !important; /* Texto blanco al escribir */
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #475569 !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.25);
+    color: #fff !important;
+}
+
+/* Placeholder (el texto de ayuda dentro del input) */
+::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1;
+}
+
+/* Títulos y Subtítulos */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* Sobreescribir la clase de Bootstrap que se ve borrosa */
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+/* Tablas */
+.table-dark {
+    --bs-table-bg: var(--card-bg);
+    color: var(--text-secondary);
+}
+
+.table-hover tbody tr:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,0.05);
+}
+
+
+
+/* Logo para fondo oscuro (Login y Navbar) */
+.logo-white {
+    /* 1. invert(1): Invierte los colores (el azul oscuro se vuelve naranja/claro).
+       2. grayscale(1): Convierte ese color claro a escala de grises (se vuelve blanco/gris claro).
+       3. brightness(2): Aumenta el brillo para que destaque más sobre el fondo oscuro.
+    */
+    filter: invert(1) grayscale(1) brightness(2);
+    height: 60px; /* Un poco más grande para que luzca */
+    width: auto;
+    transition: all 0.3s ease; /* Suaviza si cambia */
+}
+
+/* Ajuste para que en el navbar no se vea enorme */
+.navbar .logo-white {
+    height: 40px;
+    filter: invert(1) grayscale(1) brightness(1.5); /* Un poco menos brillante en el menú */
+}
