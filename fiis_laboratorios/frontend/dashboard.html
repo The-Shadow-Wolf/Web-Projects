@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Estudiante</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+<nav style="background: var(--primary-color); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <h2 id="saludo-usuario" style="margin:0; color:white; font-size:1.4rem;">Panel de Reserva</h2>
+        <small style="color: rgba(255,255,255,0.8);">Sistema de Laboratorios FIIS</small>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <div id="admin-controls"></div> 
+        
+        <button id="theme-toggle" class="btn-theme-toggle" title="Cambiar Tema">🌙</button>
+        <button onclick="logout()" style="width: auto; padding: 8px 15px; background: transparent; color: white; border: 1px solid white; border-radius: 8px;">
+            <i class="fas fa-sign-out-alt"></i> Salir
+        </button>
+    </div>
+</nav>
+
+    <div class="container">
+        
+        <div id="app-container">
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2><span style="color: var(--primary-color);">Nueva Reserva</span></h2>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fas fa-info-circle"></i> Seleccione parámetros para ver disponibilidad</span>
+                </div>
+
+                <form id="form-nueva-reserva">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div>
+                            <label for="fecha"><i class="far fa-calendar-alt"></i> Fecha</label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </div>
+                        <div>
+                            <label for="hora_inicio"><i class="far fa-clock"></i> Inicio</label>
+                            <select id="hora_inicio" name="hora_inicio" required>
+                                <option value="08:00">08:00</option><option value="08:30">08:30</option>
+                                <option value="09:00">09:00</option><option value="09:30">09:30</option>
+                                <option value="10:00">10:00</option><option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option><option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option><option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option><option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option><option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option><option value="15:30">15:30</option>
+                                <option value="16:00">16:00</option><option value="16:30">16:30</option>
+                                <option value="17:00">17:00</option><option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option><option value="18:30">18:30</option>
+                                <option value="19:00">19:00</option><option value="19:30">19:30</option>
+                                <option value="20:00">20:00</option><option value="20:30">20:30</option>
+                                <option value="21:00">21:00</option><option value="21:30">21:30</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="hora_fin"><i class="far fa-clock"></i> Fin</label>
+                            <select id="hora_fin" name="hora_fin" required>
+                                <option value="08:30">08:30</option><option value="09:00">09:00</option>
+                                <option value="09:30">09:30</option><option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option><option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option><option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option><option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option><option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option><option value="15:00">15:00</option>
+                                <option value="15:30">15:30</option><option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option><option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option><option value="18:00">18:00</option>
+                                <option value="18:30">18:30</option><option value="19:00">19:00</option>
+                                <option value="19:30">19:30</option><option value="20:00">20:00</option>
+                                <option value="20:30">20:30</option><option value="21:00">21:00</option>
+                                <option value="21:30">21:30</option><option value="22:00">22:00</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label for="laboratorio"><i class="fas fa-desktop"></i> Laboratorio</label>
+                        <select id="laboratorio" name="laboratorio" required style="font-weight: bold; color: var(--primary-color);">
+                            <option value="">Cargando laboratorios...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <div id="mapa-maquinas-container">
+                            <div id="mapa-maquinas-grid">
+                                <div style="text-align: center; color: var(--text-muted);">
+                                    <i class="fas fa-mouse-pointer fa-2x mb-2"></i><br>
+                                    Seleccione laboratorio para ver el mapa
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="equipo_id_seleccionado" name="equipo">
+                        
+                        <div style="display: flex; gap: 20px; margin-top: 15px; font-size: 0.8rem; justify-content: center; color: var(--text-muted);">
+                            <span style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #00b894; margin-right: 5px; border-radius: 2px;"></span> Disponible</span>
+                            <span style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #ff7675; margin-right: 5px; border-radius: 2px;"></span> Ocupado</span>
+                            <span style="display: flex; align-items: center;"><span style="width: 10px; height: 10px; background: #0984e3; margin-right: 5px; border-radius: 2px;"></span> Tu Selección</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" style="margin-top: 25px; font-size: 1.1rem;">
+                        Confirmar Reserva <i class="fas fa-check-circle ml-2"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="card sidebar-card">
+                
+                <div class="small-tabs">
+                    <button id="btn-tab-mis" class="small-tab-btn active" onclick="switchSideTab('mis')">
+                        <i class="fas fa-user-clock"></i> Mis Reservas
+                    </button>
+                    <button id="btn-tab-gen" class="small-tab-btn" onclick="switchSideTab('gen')">
+                        <i class="fas fa-list-alt"></i> Estado General
+                    </button>
+                </div>
+
+                <div id="side-tab-mis" style="display: block;">
+                    
+                    <div style="margin-bottom: 15px;">
+                        <select id="filtro-estado-reserva" style="padding: 5px; font-size: 0.85rem; border-radius: 6px;">
+                            <option value="todos">Ver: Todos</option>
+                            <option value="activos" selected>Ver: Pendientes / En curso</option>
+                            <option value="completados">Ver: Historial (Completados)</option>
+                        </select>
+                    </div>
+
+                    <ul id="lista-mis-reservas" class="scrollable-list">
+                        </ul>
+                </div>
+
+                <div id="side-tab-gen" style="display: none;">
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 0.85rem; color: #666;">
+                        Ocupación global del laboratorio hoy.
+                    </div>
+                    <ul id="lista-reservas" class="scrollable-list">
+                        </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon"><i class="fas fa-exclamation-circle"></i></div>
+            <div class="modal-title">¿Cancelar Reserva?</div>
+            <div class="modal-text" id="modal-msg">Esta acción liberará el equipo para otros estudiantes.</div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="cerrarModal()">No, Volver</button>
+                <button class="btn-danger" id="btn-confirm-action">Sí, Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchSideTab(tabName) {
+            document.getElementById('side-tab-mis').style.display = 'none';
+            document.getElementById('side-tab-gen').style.display = 'none';
+            document.getElementById('btn-tab-mis').classList.remove('active');
+            document.getElementById('btn-tab-gen').classList.remove('active');
+            document.getElementById('side-tab-' + tabName).style.display = 'block';
+            document.getElementById('btn-tab-' + tabName).classList.add('active');
+        }
+        
+        // Función auxiliar para cerrar modal (JS principal maneja la lógica)
+        function cerrarModal() {
+            document.getElementById('confirm-modal').classList.remove('active');
+        }
+    </script>
+
+    <script src="utils.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

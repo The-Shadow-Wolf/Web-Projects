@@ -1,0 +1,224 @@
+/* frontend/login.css */
+:root {
+    --primary-color: #004aad; /* Azul sólido fuerte */
+    --accent-color: #00d4ff;  /* Cyan brillante */
+    --gold-unac: #d4af37;     /* Dorado UNAC */
+    --glass-white: rgba(255, 255, 255, 0.96);
+    --text-dark: #222;
+    --text-gray: #555;
+    --overlay-color: rgba(0, 20, 50, 0.8);
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif; /* Tipografía más clásica/antigua */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+    /* Fondo Universitario */
+    background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Capa oscura encima de la foto */
+body::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--overlay-color);
+    backdrop-filter: blur(3px);
+    z-index: -1;
+}
+
+.login-wrapper {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* --- TARJETA ESTILIZADA (MÁS ALTA) --- */
+.login-card {
+    background: var(--glass-white);
+    /* Padding vertical aumentado (60px) para que se vea alta, no achatada */
+    padding: 60px 45px; 
+    width: 100%;
+    max-width: 360px; /* Un poco más angosta para acentuar la altura */
+    border-radius: 12px; /* Bordes menos redondos, más serios */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    border-top: 5px solid var(--gold-unac); /* Detalle elegante arriba */
+}
+
+/* --- ENCABEZADO UNAC --- */
+.unac-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.university-info h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    line-height: 1;
+    letter-spacing: 1px;
+}
+
+.university-info span {
+    font-size: 0.75rem;
+    color: #444;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 15px 0 25px;
+}
+
+/* --- TÍTULO DEL SISTEMA --- */
+.system-header h1 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin: 0;
+    font-weight: 500;
+}
+
+.fiis-text {
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.system-header p {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin: 5px 0 35px;
+}
+
+/* --- INPUTS --- */
+.input-label {
+    display: block;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 40px 12px 40px;
+    background: #f8f9fa;
+    border: 1px solid #ccc; /* Borde clásico más visible */
+    border-radius: 6px;      /* Menos redondeado */
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input-group input:focus {
+    background: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.1);
+}
+
+.input-group .icon {
+    position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+    color: #888; font-size: 1rem;
+}
+
+.toggle-password {
+    position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+    color: #888; cursor: pointer;
+}
+
+/* --- BOTÓN --- */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(to right, #004aad, #0066cc); /* Azul más serio */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #003380, #004aad);
+    box-shadow: 0 5px 15px rgba(0, 74, 173, 0.3);
+}
+
+.error-msg {
+    color: #d32f2f; font-size: 0.85rem; margin-top: 15px; min-height: 20px; font-weight: bold;
+}
+
+.footer-text {
+    margin-top: 40px; /* Más espacio abajo para alargar la tarjeta */
+    font-size: 0.75rem; color: #777;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* frontend/login.css - Agregar al final */
+
+/* --- CAJA DE ERROR --- */
+.error-msg {
+    background-color: #fee2e2; /* Fondo rojo suave */
+    color: #b91c1c;           /* Texto rojo oscuro */
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    border: 1px solid #fca5a5;
+    display: none;            /* Oculto por defecto */
+    text-align: center;
+    font-weight: 500;
+}
+
+.error-msg i {
+    margin-right: 8px;
+}
+
+/* --- ANIMACIÓN SHAKE (TEMBLOR) --- */
+.shake {
+    animation: shake-animation 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake-animation {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}

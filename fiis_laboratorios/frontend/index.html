@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso - FIIS UNAC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="login.css"> 
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            
+            <div class="unac-header">
+                <i class="fas fa-university logo-icon"></i>
+                <div class="university-info">
+                    <h2>UNAC</h2>
+                    <span>Universidad Nacional del Callao</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="system-header">
+                <h1>Gestión de Laboratorios <span class="fiis-text">FIIS</span></h1>
+                <p>Bienvenido al portal de reservas</p>
+            </div>
+
+            <form id="login-form">
+                <label class="input-label">CÓDIGO INSTITUCIONAL</label>
+                <div class="input-group">
+                    <i class="fas fa-id-card icon"></i>
+                    <input type="text" id="codigo" placeholder="Ej: 20212004A" autocomplete="off" required>
+                </div>
+
+                <label class="input-label">CONTRASEÑA</label>
+                <div class="input-group">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Ingresar al Sistema <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            
+            <div id="error-message" class="error-msg"></div>
+
+            <div class="footer-text">
+                © 2025 Oficina de Tecnologías de Información - FIIS
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+    <script>
+        function togglePassword() {
+            const input = document.getElementById('password');
+            const icon = document.querySelector('.toggle-password');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+    </script>
+
+    <div id="toast-container"></div>
+    <script src="utils.js"></script> 
+
+</body>
+</html>

@@ -1,0 +1,907 @@
+/* /frontend/styles.css - VERSIÓN INNOVADORA */
+
+:root {
+    /* Colores Principales - Gradientes y Tonos Tech */
+    --primary-gradient: linear-gradient(135deg, #0061ff 0%, #60efff 100%);
+    --primary-color: #0061ff;
+    --bg-body: #eef2f5; 
+    
+    /* Estados Semánticos (Colores Neón Suaves) */
+    --success: #00b894; /* Verde Ment */
+    --danger: #ff7675;  /* Rojo Coral */
+    --warning: #fdcb6e; /* Amarillo Sol */
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    
+    /* Variables de Cristal */
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    --blur: blur(12px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', 'Segoe UI', sans-serif; }
+
+/* Fondo Animado Sutil */
+body {
+    background: var(--bg-body);
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(253,16%,7%,0) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(225,39%,30%,0) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(339,49%,30%,0) 0, transparent 50%);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+/* Animación de Entrada para todo */
+.container, .login-card {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- TÍTULOS --- */
+h1, h2 { color: #2d3436; font-weight: 700; letter-spacing: -0.5px; }
+h2 { font-size: 1.3rem; margin-bottom: 1.5rem; position: relative; padding-bottom: 10px; }
+h2::after { /* Pequeña línea decorativa animada */
+    content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 3px; 
+    background: var(--primary-gradient); border-radius: 2px;
+}
+
+/* --- CONTENEDORES --- */
+.container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+#app-container, #admin-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 30px;
+    align-items: start;
+}
+
+/* --- TARJETAS CRISTAL (GLASSMORPHISM) --- */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: var(--glass-border);
+    border-radius: 20px; /* Bordes más redondeados */
+    padding: 30px;
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* --- FORMULARIOS MODERNOS --- */
+form div { margin-bottom: 1.2rem; }
+label { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 8px; }
+
+input, select {
+    width: 100%; padding: 12px 15px;
+    border: 2px solid transparent; /* Truco para borde degradado */
+    border-radius: 12px;
+    background: #fff;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+}
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(0, 97, 255, 0.1);
+    transform: scale(1.01);
+}
+
+/* --- BOTONES CON GRADIENTE --- */
+button {
+    width: 100%; padding: 14px;
+    border: none; border-radius: 12px;
+    font-size: 1rem; font-weight: 700;
+    cursor: pointer;
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 97, 255, 0.3);
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+button:hover { 
+    transform: translateY(-2px) scale(1.02); 
+    box-shadow: 0 8px 25px rgba(0, 97, 255, 0.4); 
+}
+.btn-danger { background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); box-shadow: 0 4px 15px rgba(214, 48, 49, 0.3); }
+
+/* --- MAPA DE MÁQUINAS: EL LABORATORIO VIRTUAL --- */
+#mapa-maquinas-container {
+    padding: 25px;
+    border-radius: 16px;
+    background: #dfe6e9; /* Color piso */
+    /* Patrón de piso técnico */
+    background-image: radial-gradient(#b2bec3 1px, transparent 1px);
+    background-size: 20px 20px;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+#mapa-maquinas-grid {
+    display: grid;
+    gap: 20px 15px; /* Espacio para las mesas */
+    width: 100%;
+    padding: 10px;
+}
+
+/* --- LA PC (INNOVADORA) --- */
+.pc {
+    position: relative;
+    height: 45px;
+    background: #2d3436; /* Monitor apagado (negro/gris oscuro) */
+    border: 2px solid #636e72; /* Marco */
+    border-radius: 6px 6px 2px 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+    z-index: 2;
+}
+
+/* La Pantalla (Luz interna) */
+.pc::before {
+    content: ''; position: absolute; top: 3px; left: 3px; right: 3px; bottom: 8px;
+    background: rgba(255,255,255,0.1); border-radius: 2px;
+}
+
+/* El Soporte */
+.pc::after {
+    content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+    width: 12px; height: 6px; background: #636e72; z-index: 1;
+}
+
+/* La Mesa (Elemento decorativo debajo) */
+.pc { 
+    box-shadow: 0 15px 0 -5px #b2bec3, /* Mesa */
+                0 20px 5px -5px rgba(0,0,0,0.1); /* Sombra mesa */
+    margin-bottom: 15px; /* Espacio para la sombra de la mesa */
+}
+
+/* --- ESTADOS (La Magia) --- */
+
+/* 1. DISPONIBLE (Encendida y Pulsando) */
+.pc.disponible {
+    background: #00b894; /* Pantalla verde */
+    border-color: #00b894;
+    color: white;
+    animation: pulseGreen 3s infinite;
+}
+@keyframes pulseGreen {
+    0% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.4), 0 15px 0 -5px #b2bec3; }
+    70% { box-shadow: 0 0 0 10px rgba(0, 184, 148, 0), 0 15px 0 -5px #b2bec3; }
+    100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0), 0 15px 0 -5px #b2bec3; }
+}
+.pc.disponible:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 184, 148, 0.4), 0 20px 0 -5px #b2bec3; /* Sombra elevada */
+}
+
+/* 2. SELECCIONADO (Azul brillante) */
+.pc.seleccionado {
+    background: #0984e3;
+    border-color: #74b9ff;
+    color: white;
+    transform: translateY(-3px) scale(1.15);
+    box-shadow: 0 0 20px rgba(9, 132, 227, 0.6), 0 15px 0 -5px #b2bec3 !important;
+    z-index: 10;
+}
+
+/* 3. OCUPADO (Roja con icono de usuario implícito) */
+.pc.ocupado {
+    background: #ff7675;
+    border-color: #d63031;
+    color: white;
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+/* 4. MANTENIMIENTO (Apagada con cinta de peligro) */
+.pc.mantenimiento {
+    background: repeating-linear-gradient(
+        45deg,
+        #2d3436,
+        #2d3436 10px,
+        #636e72 10px,
+        #636e72 20px
+    );
+    border-color: #2d3436;
+    color: transparent;
+    cursor: not-allowed;
+}
+
+/* --- LOGIN ESPECÍFICO --- */
+.login-body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+}
+.login-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 50px; width: 100%; max-width: 420px;
+}
+
+/* --- LISTAS --- */
+ul { padding: 0; }
+li {
+    background: white; border-radius: 10px; padding: 15px; margin-bottom: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    transition: transform 0.2s;
+}
+li:hover { transform: translateX(5px); }
+
+/* --- AÑADIDOS PARA NAVEGACIÓN Y TEXTOS --- */
+
+/* Subtítulos elegantes en tarjetas */
+.card-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    border-left: 3px solid var(--accent-color); /* Línea decorativa celeste */
+    padding-left: 10px;
+}
+
+/* Botón especial de Admin (Estilo Neón/Glow) */
+.btn-admin-nav {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    margin-right: 15px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    box-shadow: 0 0 10px rgba(0, 97, 255, 0.1);
+}
+.btn-admin-nav:hover {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 97, 255, 0.4);
+}
+
+/* --- TOAST NOTIFICATIONS (Adiós Alert) --- */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-left: 5px solid var(--primary-color);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideIn 0.3s ease-out forwards;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.toast.success { border-left-color: var(--success); color: #0f5132; }
+.toast.error { border-left-color: var(--danger); color: #842029; }
+.toast.info { border-left-color: var(--primary-color); color: #004085; }
+
+.toast i { margin-right: 10px; font-size: 1.2rem; }
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes fadeOut {
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* --- TABS (PESTAÑAS) --- */
+.tabs-header {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e2e8f0;
+}
+.tab-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    box-shadow: none; /* Quitar sombra de botones normales */
+}
+.tab-btn:hover { color: var(--primary-color); background: transparent; transform: none; box-shadow: none; }
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    font-weight: bold;
+}
+.tab-content { display: none; animation: fadeIn 0.5s; }
+.tab-content.active { display: grid; gap: 30px; }
+
+/* --- BADGES (ETIQUETAS) --- */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.badge-success { background: #d4edda; color: #155724; }
+.badge-warning { background: #fff3cd; color: #856404; }
+.badge-danger { background: #f8d7da; color: #721c24; }
+.badge-info { background: #d1ecf1; color: #0c5460; }
+
+/* --- AJUSTES DE GRID DASHBOARD --- */
+#app-container {
+    display: grid;
+    /* En pantallas grandes: 70% contenido, 30% barra lateral */
+    grid-template-columns: 3fr 1.2fr; 
+    gap: 25px;
+    align-items: start;
+}
+
+/* En móviles, que se apilen */
+@media (max-width: 900px) {
+    #app-container { grid-template-columns: 1fr; }
+}
+
+/* --- PANEL LATERAL CON PESTAÑAS (Compacto) --- */
+.sidebar-card {
+    height: 100%;
+    min-height: 500px; /* Altura alineada con el formulario */
+    display: flex;
+    flex-direction: column;
+}
+
+.small-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+.small-tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.small-tab-btn:hover { color: var(--primary-color); }
+
+.small-tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* Listas con Scroll Interno (¡Adiós al scroll de página!) */
+.scrollable-list {
+    max-height: 450px; /* Altura fija */
+    overflow-y: auto;  /* Scroll interno si es muy larga */
+    padding-right: 5px;
+}
+
+/* Estilizar la barra de scroll para que se vea elegante */
+.scrollable-list::-webkit-scrollbar { width: 6px; }
+.scrollable-list::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 4px; }
+.scrollable-list::-webkit-scrollbar-track { background: transparent; }
+
+/* --- MODAL PERSONALIZADO (Adiós confirm() feo) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1);
+}
+
+.modal-icon {
+    font-size: 3rem;
+    color: var(--warning);
+    margin-bottom: 15px;
+}
+
+.modal-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+.modal-text { color: var(--text-muted); margin-bottom: 25px; font-size: 0.95rem; }
+
+.modal-actions { display: flex; gap: 10px; justify-content: center; }
+.modal-actions button { width: auto; padding: 10px 20px; }
+.btn-cancel { background: #e2e8f0; color: #4a5568; }
+.btn-cancel:hover { background: #cbd5e0; }
+
+/* --- LOGIN PREMIUM (ESTILO PORTAL) --- */
+
+/* 1. Fondo Animado */
+.login-body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Para que las esferas no creen scroll */
+    position: relative;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 2. Esferas Flotantes Decorativas */
+.decoration {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite;
+}
+.shape-1 {
+    width: 300px; height: 300px;
+    background: #0061ff;
+    top: -50px; left: -50px;
+}
+.shape-2 {
+    width: 250px; height: 250px;
+    background: #ff7675;
+    bottom: -50px; right: -50px;
+    animation-delay: -3s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(20px) scale(1.05); }
+    100% { transform: translateY(0px) scale(1); }
+}
+
+/* 3. Tarjeta de Cristal Mejorada */
+.login-card {
+    position: relative;
+    z-index: 1; /* Encima de las esferas */
+    background: rgba(255, 255, 255, 0.85); /* Más blanco */
+    backdrop-filter: blur(20px); /* Efecto vidrio esmerilado */
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* 4. Inputs con Iconos (Input Group) */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.input-group label {
+    margin-left: 5px;
+    color: #555;
+    font-size: 0.85rem;
+}
+.input-wrapper {
+    position: relative;
+}
+.input-wrapper i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+.input-wrapper input {
+    padding-left: 45px; /* Espacio para el icono */
+    border-radius: 12px;
+    background: rgba(255,255,255,0.9);
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    height: 50px; /* Inputs más altos y cómodos */
+}
+.input-wrapper input:focus {
+    background: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 15px rgba(0, 97, 255, 0.15);
+}
+
+/* 5. Botón Login Brillante */
+.btn-login {
+    margin-top: 10px;
+    height: 50px;
+    font-size: 1.1rem;
+    background: linear-gradient(90deg, var(--primary-color) 0%, #00d2ff 100%);
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+.btn-login::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+}
+.btn-login:hover::before {
+    left: 100%; /* Efecto de brillo al pasar el mouse */
+}
+
+/* Logo Animado */
+.logo-icon {
+    font-size: 3.5rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* --- TOOLTIP PERSONALIZADO (Para reportes) --- */
+.custom-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    margin-left: 5px;
+}
+
+.custom-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 220px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 10px;
+    position: absolute;
+    z-index: 10;
+    bottom: 135%; /* Que aparezca ARRIBA del icono */
+    left: 50%;
+    margin-left: -110px; /* Centrarlo respecto al icono */
+    
+    /* Efectos visuales */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.75rem;
+    font-weight: normal;
+    text-transform: none;
+    line-height: 1.4;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Flechita decorativa abajo del tooltip */
+.custom-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.custom-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* =========================================
+   SISTEMA DE DISEÑO & MODO OSCURO (FINAL V2)
+   ========================================= */
+
+/* 1. VARIABLES GLOBALES */
+:root {
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --bg-map: #f8f9fa;        /* Fondo del mapa en modo claro */
+    --dot-color: #cbd5e0;     /* Color de los puntos del mapa */
+    
+    --text-main: #333333;
+    --text-muted: #666666;    /* Gris medio para textos secundarios */
+    --border-color: #e0e0e0;
+    --input-bg: #ffffff;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    /* Alertas Modo Claro */
+    --info-bg: #fff3cd;
+    --info-text: #856404;
+    --info-border: #ffeeba;
+}
+
+[data-theme="dark"] {
+    --bg-body: #121212;       /* Negro Profundo */
+    --bg-card: #1e1e1e;       /* Tarjetas Gris Oscuro */
+    --bg-map: #252525;        /* Fondo del mapa OSCURO */
+    --dot-color: #444444;     /* Puntos oscuros */
+    
+    --text-main: #e0e0e0;     /* Blanco Suave */
+    --text-muted: #b0b0b0;    /* ¡IMPORTANTE! Gris mucho más claro para leerse bien */
+    --border-color: #333333;
+    --input-bg: #2d2d2d;
+    --shadow: 0 4px 10px rgba(0,0,0,0.5);
+    
+    /* Alertas Modo Oscuro */
+    --info-bg: #3e320a;
+    --info-text: #ffd700;
+    --info-border: #665200;
+}
+
+/* 2. APLICACIÓN AL CUERPO */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* 3. FORZAR COLORES EN ELEMENTOS ESPECÍFICOS */
+[data-theme="dark"] .card, 
+[data-theme="dark"] .modal-box, 
+[data-theme="dark"] .login-card,
+[data-theme="dark"] .lab-gestion-item,
+[data-theme="dark"] ul li {
+    background-color: var(--bg-card) !important;
+    color: var(--text-main) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* 4. ARREGLO DE TEXTOS PEQUEÑOS (Piso 2, Inventario, etc.) */
+[data-theme="dark"] small,
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .card-desc,
+[data-theme="dark"] label,
+[data-theme="dark"] p {
+    color: var(--text-muted) !important; /* Fuerza el color gris claro */
+}
+
+/* Títulos siempre blancos/claros en modo oscuro */
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] strong, 
+[data-theme="dark"] b {
+    color: var(--text-main) !important;
+}
+
+/* 5. ARREGLO DEL MAPA DE RESERVA (Fondo claro -> Oscuro) */
+/* Asumiendo que el contenedor del mapa tiene un estilo de grid o background */
+.mapa-grid, 
+#mapa-maquinas-grid { 
+    background-color: var(--bg-map);
+    background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px; /* Asegurar espacio */
+}
+
+/* 6. INPUTS Y SELECTORES (Oscuros) */
+[data-theme="dark"] input, 
+[data-theme="dark"] select, 
+[data-theme="dark"] textarea {
+    background-color: var(--input-bg) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* 7. CAJA AMARILLA DE INFO (Adaptable) */
+.info-box {
+    background-color: var(--info-bg) !important;
+    color: var(--info-text) !important;
+    border-left: 5px solid var(--info-border) !important;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex; align-items: start; gap: 15px;
+}
+
+/* 8. BOTÓN TEMA Y SKELETON (Igual que antes) */
+.btn-theme-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+}
+.btn-theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+@keyframes skeleton-loading { 0% { background-color: #e0e0e0; } 50% { background-color: #f5f5f5; } 100% { background-color: #e0e0e0; } }
+[data-theme="dark"] .skeleton { animation: skeleton-loading-dark 1.5s infinite; }
+@keyframes skeleton-loading-dark { 0% { background-color: #333; } 50% { background-color: #444; } 100% { background-color: #333; } }
+.skeleton { animation: skeleton-loading 1.5s infinite ease-in-out; border-radius: 6px; color: transparent !important; pointer-events: none; }
+
+/* --- ETIQUETAS DE ROL EN EL SALUDO --- */
+.badge-rol-sistema {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Estilo para Estudiantes */
+.badge-estudiante {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+}
+
+/* Estilo para ADMIN (Más destacado) */
+.badge-admin {
+    background: linear-gradient(135deg, #0061ff 0%, #60efff 100%); /* Azul brillante */
+    color: white;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 97, 255, 0.3);
+}
+
+/* Ajuste para Modo Oscuro */
+[data-theme="dark"] .badge-estudiante {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+}
+
+/* Ocultar todo lo que no sea gráficos al imprimir */
+@media print {
+    body * { visibility: hidden; }
+    #area-impresion, #area-impresion * { visibility: visible; }
+    #area-impresion { position: absolute; left: 0; top: 0; width: 100%; }
+    /* Ocultar botones en la impresión */
+    button, nav, .tab-buttons { display: none !important; }
+}
+
+/* Ajustes Reportes */
+.kpi-card {
+    transition: transform 0.2s;
+}
+.kpi-card:hover {
+    transform: translateY(-5px);
+}
+/* Modo oscuro para los inputs de fecha */
+[data-theme="dark"] input[type="date"] {
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+/* Layout para móviles */
+@media (max-width: 768px) {
+    #area-impresion {
+        grid-template-columns: 1fr !important; /* Una sola columna */
+    }
+    .filter-bar {
+        flex-wrap: wrap;
+    }
+}
+
+/* --- ESTILOS DE IMPRESIÓN (PDF) --- */
+.only-print { display: none; }
+
+@media print {
+    /* 1. Ocultar todo lo que no sea el reporte */
+    body * {
+        visibility: hidden;
+    }
+    
+    /* 2. Mostrar solo el área del reporte */
+    #reporte-imprimible, #reporte-imprimible * {
+        visibility: visible;
+    }
+
+    /* 3. Posicionar el reporte arriba a la izquierda */
+    #reporte-imprimible {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white; /* Ahorrar tinta de fondo oscuro */
+        color: black;
+    }
+
+    /* 4. Ocultar botones y clases no-print */
+    .no-print, nav, .btn, button, .filter-bar {
+        display: none !important;
+    }
+
+    /* 5. Mostrar título de impresión */
+    .only-print {
+        display: block;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #333;
+    }
+
+    /* 6. Ajustes de gráficos y tabla */
+    .card {
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
+    
+    /* Forzar colores de texto en impresión (ignorar modo oscuro) */
+    h2, h3, h4, td, th {
+        color: black !important;
+    }
+}
+
+/* Asegurar altura para los gráficos */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
